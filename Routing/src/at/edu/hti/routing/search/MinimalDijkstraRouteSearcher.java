@@ -43,7 +43,6 @@ public class MinimalDijkstraRouteSearcher implements IRouteSearcher {
   @Override
   public IRoute calculate(GraphItem start, GraphItem end, Graph graph) {
     Route route = new Route(start, end, graph);
-    long s1 = System.nanoTime();
 
     List<Vertex> vertexes = new ArrayList<>();
     List<Edge> edges = new ArrayList<>();
@@ -66,6 +65,8 @@ public class MinimalDijkstraRouteSearcher implements IRouteSearcher {
         edges.add(new Edge(_g.getId() + ">" + _n.getId(), _g, _n, n.getCost()));
       }
     }
+    //timing only for calculation - not instantiation
+    long s1 = System.nanoTime();
 
     VogellaGraph vogellaGraph = new VogellaGraph(vertexes, edges);
     DijkstraAlgorithm algo = new DijkstraAlgorithm(vogellaGraph);

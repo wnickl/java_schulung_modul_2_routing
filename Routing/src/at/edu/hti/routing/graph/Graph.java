@@ -31,12 +31,14 @@ public class Graph {
   private final GraphItem[][] itemArray;
   private final int maximumXCoordinate;
   private int maximumYCoordinate;
+  private final int[][] initialIntArray;
 
   /** converts int[][] to GraphItem[][]/List */
   public Graph(int[][] arr) {
     if (arr == null) {
       throw new NullPointerException("'array' must not be null");
     }
+    initialIntArray = arr;
     maximumXCoordinate = arr.length - 1;
     itemArray = new GraphItem[arr.length][];
     for (int x = 0; x < arr.length; x++) {
@@ -105,6 +107,10 @@ public class Graph {
 
   public int getMaxY() {
     return maximumYCoordinate;
+  }
+
+  public int[][] getInitialIntArray() {
+    return initialIntArray;
   }
 }
 

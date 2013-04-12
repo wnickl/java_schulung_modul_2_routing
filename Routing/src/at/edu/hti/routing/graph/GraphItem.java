@@ -30,11 +30,13 @@ public class GraphItem {
   private final int yCoord;
   private final int cost;
   private final Map<GraphDirection, GraphItem> neighbors = new EnumMap<GraphDirection, GraphItem>(GraphDirection.class);
+  private final String name;
 
   public GraphItem(int xCoord, int yCoord, int cost) {
     this.xCoord = xCoord;
     this.yCoord = yCoord;
     this.cost = cost;
+    this.name = xCoord + "-" + yCoord;
   }
 
   public int getXCoordinate() {
@@ -133,6 +135,10 @@ public class GraphItem {
       }
     }
     return list;
+  }
+
+  public String getName() {
+    return name;
   }
 }
 

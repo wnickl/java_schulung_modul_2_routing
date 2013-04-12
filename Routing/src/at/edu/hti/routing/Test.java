@@ -46,6 +46,33 @@ public class Test {
                                                    new int[] {9, 7, 4, 5, 6, 2, 7, 0, 6, 3,},
                                                    new int[] {0, 3, 9, 3, 7, 9, 3, 6, 7, 9,}};
 //@formatter:on
+  /**
+   * if you encounter this problem:
+   * 
+   * <pre>
+   * ****************************************************************************************************
+   * testing route calculation for array [10][10]
+   * Exception in thread "main" java.lang.IllegalArgumentException: Comparison method violates its general contract!
+   *   at java.util.TimSort.mergeLo(TimSort.java:747)
+   *   at java.util.TimSort.mergeAt(TimSort.java:483)
+   *   at java.util.TimSort.mergeCollapse(TimSort.java:410)
+   *   at java.util.TimSort.sort(TimSort.java:214)
+   *   at java.util.TimSort.sort(TimSort.java:173)
+   *   at java.util.Arrays.sort(Arrays.java:659)
+   *   at java.util.Collections.sort(Collections.java:217)
+   *   at at.edu.hti.routing.search.alexmarkt.Dijkstra.getMininum(Dijkstra.java:109)
+   *   at at.edu.hti.routing.search.alexmarkt.Dijkstra.findShortestPath(Dijkstra.java:50)
+   *   at at.edu.hti.routing.search.AlexanderMarktlRouteSearcher.calculate(AlexanderMarktlRouteSearcher.java:57)
+   *   at at.edu.hti.routing.Test.testPerformance(Test.java:71)
+   *   at at.edu.hti.routing.Test.main(Test.java:55)
+   * 
+   * </pre>
+   * 
+   * add vm-parameter to run-configuration: <code>-Djava.util.Arrays.useLegacyMergeSort=true</code>
+   * see: <a href=
+   * "http://stackoverflow.com/questions/6626437/why-does-my-compare-method-throw-exception-comparison-method-violates-its-gen"
+   * >info</a>
+   */
   public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException {
 
     List<IRouteSearcher> rss = InstanceUtil.returnAvailableRouteSearcherImplementations();
@@ -55,7 +82,7 @@ public class Test {
     message.append(testPerformance(rss, 10, 10));
     message.append(testPerformance(rss, 50, 50));
     message.append(testPerformance(rss, 100, 100));
-    message.append(testPerformance(rss, 150, 150));
+    //    message.append(testPerformance(rss, 150, 150));
 
     write(f, message.toString());
   }
