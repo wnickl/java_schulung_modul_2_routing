@@ -44,10 +44,12 @@ public class Dijkstra {
 
     /** 1 */
     init0(g, start);
-
     /** 2 */
     while (!unsettled.isEmpty()) {
       ExtendedVertex evx = getMininum();
+      if (evx.getVertex().compareTo(destination) == 0) {
+        break;
+      }
       unsettled.remove(evx);
       update(evx);
     }
